@@ -18,7 +18,7 @@ written. It is the macOS port of the Windows application of the same name, with 
 
 Supports **SQLite**, **MySQL**, **MariaDB** and **PostgreSQL**
 
-> **Status:** version 1.5.4. The app is not code-signed or notarised yet, so Gatekeeper asks for confirmation the first
+> **Status:** version 1.5.5. The app is not code-signed or notarised yet, so Gatekeeper asks for confirmation the first
 > time it is opened. MariaDB has not been exercised against a live server yet, and SQL Server is shown in the engine
 > picker but has no driver yet.
 

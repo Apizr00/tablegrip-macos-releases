@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.5] - 2026-10-13
+
+### Changed
+- **The update notice and About follow the Windows app.** On the start screen the notice sits under the version: the
+  orange "Version X is available" line with *What's new* and *Update* beneath it. About shows the mark, name and version,
+  who maintains TableGrip, and GitHub / User guide / Changelog buttons.
+
 ## [1.5.4] - 2026-10-13
 
 ### Fixed

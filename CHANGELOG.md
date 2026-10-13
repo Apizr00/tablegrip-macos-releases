@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.10.0] - 2026-10-13
+
+Batch 4 of the feature checklist: editor extras (see *Roadmap and progress* in the README).
+
+### Added
+- **Line numbers and code folding in the SQL editor.** A gutter numbers the lines (a wrapped line has one number) and
+  shows a triangle where a statement of three or more lines, a bracket, a CASE or a block comment can fold into one
+  line with a ⋯ marker. Click the triangle or the ⋯, or use Edit > Folding (⌥⌘← fold, ⌥⌘→ unfold, ⌥⇧⌘← / ⌥⇧⌘→ all).
+  The folded text is still there for copying, searching and running; editing inside it opens it. Turn the gutter off in
+  Preferences > Grid and editor.
+- **Multiple cursors.** ⌘D adds the next occurrence of the selected word, ⇧⌘L selects every occurrence, ⌥⌘↑ / ⌥⌘↓ add a
+  cursor above or below, ⌥⌘-click adds one where you click. Typing, Backspace / Delete, Return, paste, copy and cut work
+  at every cursor; Esc goes back to one. (Edit > Multiple Cursors.)
+- **Split editor** (⌘\\, the Split button, Query menu): a second script beside the first in the same query tab. The pane with
+  the keyboard is the one that runs, formats and saves; closing the split keeps what was written there.
+- **A notice when a long job finishes** while TableGrip is in the background: the Dock icon bounces and, in the
+  installed app, macOS shows a notification. It covers queries and scripts, exports, imports (CSV, JSON, SQL file),
+  backup, restore and maintenance. Set the time that counts as long (5 seconds to 5 minutes) or turn it off in
+  Preferences > History and data.
+- **Connection timeout and retries** (Preferences > History and data): give up on a try after 5 to 120 seconds (or no
+  limit), and try again up to 10 times with a pause between. Only a server that cannot be reached is retried; a wrong
+  password or an unknown database is not. A message says when another try follows.
+
 ## [1.9.0] - 2026-10-13
 
 Batch 3 of the feature checklist: administration (see *Roadmap and progress* in the README). Works on MySQL, MariaDB and

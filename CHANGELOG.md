@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.6.1] - 2026-10-13
+
+### Added
+- **⌘F opens the filter bar** on a table and puts the cursor in the first value field (Esc closes it). On a query tab it
+  still searches the results.
+- **SQL opens a query tab.** On a table, *SQL* opens a new query tab with the statement the grid runs, filter values
+  filled in, ready to edit with suggestions as you type. The toolbar's *SQL* button opens an empty query tab.
+- **The connection pill fills like on Windows** while a refresh runs: a mosaic of small cells grows from the left, with
+  coloured pixels flickering at the leading edge, then fades.
+
+### Changed
+- **The toolbar is arranged like TablePlus.** Buttons sit in rounded groups; Discard, Preview and Commit are icons that
+  stay in view (greyed out until there is something to commit); the connection pill fills the middle in a monospaced
+  font and ends with the open table's name.
+
+### Fixed
+- **The search box on the start screen** was hidden under the title bar.
+- **The last filter condition could not be removed.** Removing it now clears the filter and closes the bar; ⌘F or the
+  Filter button brings it back.
+
 ## [1.6.0] - 2026-10-13
 
 ### Added

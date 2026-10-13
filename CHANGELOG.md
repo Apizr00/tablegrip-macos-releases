@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.9.0] - 2026-10-13
+
+Batch 3 of the feature checklist: administration (see *Roadmap and progress* in the README). Works on MySQL, MariaDB and
+PostgreSQL; checked against MySQL 8.4 and PostgreSQL 18.
+
+### Added
+- **Database > Administration…** (⌥⌘A), one window with:
+  - **Sessions:** who is connected and what each is running, refreshed every 4 seconds, with *Cancel query* and *End
+    session* (both ask first).
+  - **Locks:** which session waits for which, how long, and a button to end the blocking session.
+  - **Server status** and **Settings**, searchable.
+  - **Users & roles:** the accounts, the privileges of the selected one, *New account…* (name, host, password and an
+    access level of connect only / read only / read and write / all privileges on the database, with the SQL shown first),
+    *Change password…* and *Drop account…*.
+  - **Replication:** replica or standby status, or the replicas of a primary.
+  - **Maintenance:** analyze, optimize / vacuum, check or rebuild the indexes of one table or all of them.
+- Database menu entries for Locks, Server Status, Users & Roles, Replication and Maintenance open the window on that view.
+- Changes honour the connection's safe mode; on a read-only connection the buttons that change anything are off.
+
+### Fixed
+- **The loading fill on the connection pill now runs to the end of the pill** before it fades (the last step was dropped).
+
 ## [1.8.0] - 2026-10-13
 
 Batch 2 of the feature checklist: data and schema tools (see *Roadmap and progress* in the README).

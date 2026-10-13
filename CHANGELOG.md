@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.6.3] - 2026-10-13
+
+### Changed
+- **The connection pill is a solid bar in the connection's colour**, like TablePlus: `DEVELOPMENT | MariaDB 10.6.22 :
+  connection : database` in white on blue, green for local, red for production, purple for staging; a connection
+  without a tag uses its own colour. The loading fill still plays over it.
+
+### Fixed
+- **Pressing Refresh repeatedly** restarts the pill's fill from the left and the newest refresh takes over, as on
+  Windows. Before, the fill could vanish when an earlier refresh finished.
+- **A blank toolbar.** A window that opened while TableGrip was not the front app (launched from another app, or with a
+  database file) showed an empty strip where the toolbar belongs: the opaque title bar was covering it. It is now kept
+  transparent.
+
 ## [1.6.2] - 2026-10-13
 
 ### Changed

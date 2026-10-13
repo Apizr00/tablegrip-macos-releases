@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.2] - 2026-10-13
+
+### Fixed
+- **Updating a copy that was opened from Downloads.** macOS runs a freshly downloaded app from a read-only, randomised
+  location, so it could not replace itself and the update failed. The update is now installed in the Applications folder
+  (or ~/Applications) and opened from there. A copy in a folder that needs an administrator (an Applications folder owned
+  by another account) asks for the password instead of failing, and the update window says where it will install.
+- An update can be installed where no copy exists yet.
+
 ## [1.5.1] - 2026-10-13
 
 ### Changed

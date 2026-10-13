@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.3] - 2026-10-13
+
+### Fixed
+- **Check for Updates always answers.** Choosing it from the menu opens a window: the new version with its notes,
+  "TableGrip is up to date", or why the check could not be made (offline, release page unreachable) with *Check Again*.
+  Before, nothing appeared unless a newer version existed.
+
 ## [1.5.2] - 2026-10-13
 
 ### Fixed

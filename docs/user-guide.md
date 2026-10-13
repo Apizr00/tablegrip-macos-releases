@@ -47,8 +47,15 @@ guarantee use a database account without write privileges.
   search box on the right matches any text column.
 - **Follow relationships.** A foreign-key cell that holds a value ends in an arrow (**→**): click it to open the table
   it points at, filtered to that row.
-- **Right-click a cell** for *Edit value*, *Set value > NULL*, *Copy*, *Copy with header line*, *Reload rows*,
-  *Follow relationship* and *Quick filter* style actions.
+- **Select several tables** in the sidebar (⌘-click, ⇧-click, or *Select all tables* in the right-click menu), then
+  right-click for **Export**: one file per table (CSV, JSON, Excel) in a folder you choose, or one .sql script.
+- **Search** (⌘F) puts the cursor in the search box of the open table (on the server, every column) or of a query result
+  (the loaded rows, with a "12 of 250 rows" count). ⌥⌘F filters the sidebar.
+- **Right-click a cell** for *Edit value…* (a multi-line editor, with JSON formatting), *Set value* (NULL, empty string),
+  *Reload rows*, *Paste* and *Paste to selected cells* (staged, so they can be undone), *New row*, *Duplicate row*,
+  *Copy*, *Copy as* (with headers, CSV, JSON, SQL INSERT), *Copy all values of this column*, *Quick filter*, *Follow
+  relationship* (the row a key points at, or the rows of other tables that point at this one), *Import CSV*, *Export rows*
+  and *Delete row*. The menu acts on the cell under the pointer.
 - **Details panel** (right) shows every column of the selected row with its full, selectable value. It follows the cell
   you are on and refreshes when a staged edit changes the row.
 - **Structure** shows columns with their types, keys, indexes, the CREATE statement, the size of the table and its
@@ -160,10 +167,26 @@ selection and unsaved changes. Closing the last one returns to the start screen.
 | ⌘Z / ⇧⌘Z | Undo / redo staged edits |
 | ⌘S / ⇧⌘⌫ | Commit / discard staged edits |
 | ⌥⌘1, ⌥⌘2, ⌥⌘3 | Sidebar, details panel, console |
+| ⌘K / ⌘P | Command palette: commands, tables and saved queries (type `>` for commands only) |
+| ⇧⌘[ / ⇧⌘] | Previous / next tab |
+| ⌘F / ⌥⌘F | Search the table or result / filter the sidebar |
+| ⇧⌘W | Close the connection |
 | ⌘L | Explain the statement at the caret |
 | ⇧⌘E / ⇧⌘I | Export / import CSV |
 
 ## Updates
 
-Updates are checked when TableGrip starts (you can turn that off in Preferences). **Check for Updates** in the Help menu
-runs a check by hand and shows the release notes. Nothing but the release page is contacted, and no account is needed.
+TableGrip updates itself. It looks for a new version when it starts (and every few hours while it stays open); you can
+turn that off in Preferences > History and data.
+
+- **When a new version exists** a window opens: *A new version of TableGrip is available!* with the release notes.
+  **Install Update** downloads it with a progress bar and checks it (right app, right version, intact signature); then
+  **Install and Restart** replaces the app and opens the new one. Your connections, settings and history are kept, and
+  it asks first if a tab has edits that were not committed.
+- **Remind Me Later** closes the window; the start screen keeps an orange notice (*What's new*, *Update*) and the
+  status bar shows an *Update* chip. **Skip This Version** hides that version until a newer one appears.
+- **Check for Updates…** (the TableGrip menu, or Preferences > *Check now*) looks once, whenever you like, and offers a
+  skipped version again.
+- It works for a copy in `/Applications` (or any folder you can write to). A copy run from the Downloads folder or
+  straight from `swift run` can only point you at the release page.
+- Nothing but the release page on GitHub is contacted, and nothing about you or your data is sent.

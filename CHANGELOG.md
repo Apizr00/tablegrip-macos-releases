@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.1] - 2026-10-13
+
+### Changed
+- **One download for every Mac.** The app is now a universal build that runs natively on Apple silicon (M series) and
+  Intel chips. 1.5.0 was Apple silicon only.
+
 ## [1.5.0] - 2026-10-13
 
 ### Changed

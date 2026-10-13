@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4] - 2026-10-13
+
+### Fixed
+- **The red close button.** With a connection open it closes the connection and returns to the start screen; pressed again
+  on the start screen it quits. The second press did nothing before. Closing a connection also no longer waits for the
+  server to hang up, so a slow or busy server cannot leave you stuck on the workspace.
+
 ## [1.5.3] - 2026-10-13
 
 ### Fixed

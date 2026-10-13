@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.11.0] - 2026-10-13
+
+Batch 5 of the feature checklist: more engines and ways to connect (see *Roadmap and progress* in the README).
+
+### Added
+- **CockroachDB, Greenplum, Amazon Redshift and SingleStore** in the engine picker, marked *beta*. They speak the
+  PostgreSQL or MySQL protocol, so the existing drivers open them, with each engine's own default port (26257, 5432,
+  5439, 3306) and user. They were checked by running the drivers' own tests against PostgreSQL and MySQL servers under
+  these engine names, not against the products themselves; features that rely on an engine's own catalog (query
+  plans, the Administration views) may not work on them.
+- **New connection from a URL or .env** (File menu, ⇧⌘N, or *Paste a URL or .env…* in the engine picker). Paste
+  `mysql://user:pass@host:3306/db?ssl-mode=required`, `postgres://…`, `jdbc:mysql://…`, `sqlite:///path/to/file.db`, or the
+  `DB_CONNECTION` / `DB_HOST` / `DB_PORT` / `DB_DATABASE` / `DB_USERNAME` / `DB_PASSWORD` (or `DATABASE_URL`) lines of a
+  Laravel-style `.env` file; the connection form opens filled in. Passwords are percent-decoded and kept out of the
+  saved connection list (they go to the Keychain when you save).
+- **SSH jump hosts.** The SSH section of a connection has a *Jump host* field (`user@bastion:22`, several hops separated
+  by commas): the tunnel goes through it with `ssh -J`. Only plain host names, user names and ports are accepted.
+
 ## [1.10.0] - 2026-10-13
 
 Batch 4 of the feature checklist: editor extras (see *Roadmap and progress* in the README).

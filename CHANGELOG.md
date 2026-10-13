@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.8.0] - 2026-10-13
+
+Batch 2 of the feature checklist: data and schema tools (see *Roadmap and progress* in the README).
+
+### Added
+- **Table designer.** Database > Create Table… opens a grid of columns (name, type with suggestions, default, NULL, key,
+  auto-increment) with the SQL shown underneath; *Create* runs it, *Open in query tab* hands it over.
+- **Alter table** (sidebar, Database menu): rename, retype, add and drop columns; only the changes are written, in the
+  syntax of the engine (MySQL `MODIFY COLUMN`, PostgreSQL `ALTER COLUMN … TYPE / SET NOT NULL`, SQL Server `sp_rename`).
+  SQLite changes it cannot make in place are written as a note about rebuilding the table.
+- **Drop table and Empty table** from the sidebar and the Database menu. The connection's safe mode asks as it does for
+  any statement; a connection with safe mode off gets a confirmation of its own.
+- **Import JSON.** *Import CSV or JSON…* reads an array of objects, `{"rows": [...]}` or one object per line, and uses
+  the same column matching, validation and single transaction as CSV (nested values become JSON text, `null` becomes NULL).
+- **Import SQL File…** runs a dump or migration statement by statement with progress, *Stop at the first error*, a Stop
+  button, and safe mode on every statement.
+- **Columns button** on a table: show or hide columns of the grid (they stay in exports and the row details).
+- **Schema compare** (Tools): two open connections; lists tables only on one side and differing columns, indexes and
+  foreign keys, and writes the script that makes the target match the source. Drops are comments unless you include them.
+
 ## [1.7.0] - 2026-10-13
 
 Batch 1 of the feature checklist (see *Roadmap and progress* in the README).

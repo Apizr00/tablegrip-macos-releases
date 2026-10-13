@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.2] - 2026-10-13
+
+### Changed
+- **The start screen opens compact** (760 × 520, centred), like TablePlus's, instead of at the size it was last left.
+- **The connection pill fills for table loads and query runs too**, not only for a refresh: the mosaic creeps along while
+  rows load or a statement runs, completes, then fades.
+
+### Fixed
+- **Refresh can be pressed again and again.** A second ⌘R while one was running was ignored; each press now starts a
+  refresh and the pill's fill stays until the last one is done.
+- The environment chip (LOCAL, PRODUCTION, ...) is back inside the connection pill, in its colour.
+
 ## [1.6.1] - 2026-10-13
 
 ### Added

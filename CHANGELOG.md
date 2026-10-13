@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.7.0] - 2026-10-13
+
+Batch 1 of the feature checklist (see *Roadmap and progress* in the README).
+
+### Added
+- **Connection menu:** Connect, Disconnect, Reconnect, Edit, Duplicate and Test Connection (it reports how long the
+  server took), SSH Tunnel, SSL/TLS, Connection Properties and Health.
+- **Database menu:** Create Database / Schema / Table / View open a query tab with a starting statement for the engine;
+  Users & Roles, Permissions and Maintenance (analyze, optimize or vacuum, check, rebuild indexes) do the same; Refresh
+  and Browse Tables. Nothing runs by itself.
+- **Format SQL** (⌥⌘L, the Format button, Edit and Query menus): keywords in capitals, one clause per line, the select
+  list and AND / OR one per line, subqueries indented, one column per line in CREATE TABLE. Strings, comments and quoted
+  names are never touched; stored routines and `DELIMITER` scripts are left as written.
+- **Find and Replace in the SQL editor** (⇧⌘F, ⇧⌘H).
+- **Tools > Generate SQL** writes CREATE, SELECT, INSERT, UPDATE or DELETE for the selected table in a query tab.
+- **View:** Object Browser, Data Grid, SQL Editor, and Zoom In / Out / Actual Size (⌘+ ⌘− ⌘0) for the grid and editor.
+- **File:** New SQL Query, Open SQL File, Save Query As, Import and Export. **Query:** Run Selection, Cancel Query, Query
+  History. **Window:** Move Tab Left / Right, Reset Layout.
+- **Help:** Documentation, Keyboard Shortcuts (a window listing them), Troubleshooting and Report a Bug.
+
+### Fixed
+- The loading fill on the connection pill now runs on to the end of the pill before it fades.
+- The README tracks the checklist, batch by batch.
+
 ## [1.6.3] - 2026-10-13
 
 ### Changed

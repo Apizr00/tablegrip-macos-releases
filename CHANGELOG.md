@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.6.0] - 2026-10-13
+
+### Added
+- **Resizable panels.** Drag the divider of the sidebar, the details bar or the console to change its size; the sizes are
+  remembered.
+- **Draggable ER diagram.** Move the tables around; the relationship lines follow, leaving from the side that faces the
+  other table, with the crow's foot and the optional circle turning with them.
+- **Case-sensitive text filters:** *Contains*, *Not contains*, *Has prefix* and *Has suffix*, each with a
+  "- Case sensitive" variant (MySQL `LIKE BINARY`, SQLite `GLOB`, SQL Server case-sensitive collation, PostgreSQL `LIKE`).
+- An *Acknowledgements* button in About.
+
+### Changed
+- **Filter bar like TablePlus and the Windows app.** One line per condition with an on/off box, column, operator and
+  value; nothing runs until you press Apply, Apply All or Return, so typing no longer reloads the table. *Match any
+  condition* and *Clear* sit underneath.
+- Environment tags on the start screen are small tinted badges.
+
+### Fixed
+- **The foreign key arrow in the grid** now shows on MySQL, PostgreSQL and SQLite tables (the lightweight table lookup
+  did not read foreign keys). A NULL value shows a faint arrow that does nothing. The ER diagram draws its lines from
+  the same data.
+
 ## [1.5.5] - 2026-10-13
 
 ### Changed

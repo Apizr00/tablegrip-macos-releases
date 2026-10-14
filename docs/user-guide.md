@@ -7,6 +7,16 @@
 2. **Test** checks the settings without saving. **Save** keeps the connection in the list; **Connect** saves and opens it.
 3. SQLite files can also be opened with **Open Database File** (⌘O) or by dropping them on the window.
 
+### The engines
+| Engine | How it connects | What to know |
+|---|---|---|
+| MySQL, MariaDB, PostgreSQL | Their own protocols | Everything in this guide. |
+| SQL Server | The TDS protocol (port 1433), a SQL login such as `sa` | Leave Database empty for `master`. Only the first result set of a batch is shown. |
+| ClickHouse | HTTP (port 8123), HTTPS (8443) with SSL mode Required or stricter | Tables without a key open read-only. |
+| SQLite, DuckDB | A file (DuckDB also `:memory:`) | DuckDB creates a file that does not exist yet. DuckDB cannot interrupt a running statement. |
+| Redis | Port 6379, optional user and password | The *Database* field is the number (0 to 15). Keys are the tables; a key opens as its members (a hash as field / value, a list as index / value, a sorted set as member / score). Run commands in a query tab, one per line. Browsing is read-only. |
+| MongoDB | Port 27017, SCRAM sign-in | Databases hold collections; a collection opens as its documents, with a column for every field found. Run `db.items.find({...})`, `db.items.updateOne(...)`, `show collections`, `use shop` or a JSON command such as `{"ping": 1}` in a query tab. Browsing is read-only. |
+
 ### Passwords
 - *Store securely* keeps the password in the login keychain. It is never written to `connections.json`.
 - *Ask every time* asks when you connect and keeps it in memory only.

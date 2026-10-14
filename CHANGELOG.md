@@ -1,5 +1,49 @@
 # Changelog
 
+## [1.12.0] - 2026-10-14
+
+Batch 6 of the feature checklist: engines with a driver of their own (see *Roadmap and progress* in the README).
+
+### Added
+- **Microsoft SQL Server.** The TDS protocol is written for this app, so nothing has to be installed: SQL logins,
+  encryption from "if the server offers it" to "verify identity" (the TLS handshake travels inside TDS, as SQL Server
+  expects), parameterised statements, every common column type (including `decimal`, `money`, `date`/`time`/`datetime2`/
+  `datetimeoffset`, `uniqueidentifier`, `xml`, `varchar(max)`, the old code pages and UTF-8 collations), streaming of
+  large results, cancelling a running statement and carrying on with the same login, transactions with the app's
+  staged edits, the table designer, CSV import, `OFFSET / FETCH` paging and the filter bar. Checked against SQL Server
+  2022.
+- **ClickHouse** over its HTTP interface (query ids, `KILL QUERY` on cancel, read-only tables unless they have a key,
+  the SQL templates and the designer for MergeTree tables). Checked against ClickHouse 26.9.
+- **DuckDB**, compiled into the app: open or create a database file, or use `:memory:`. Every DuckDB type is shown (lists,
+  structs and maps as JSON, decimals with their scale, hugeint and unsigned 64-bit exactly), with constraints,
+  indexes, comments and the view definitions in the Structure tab.
+- **Redis**: databases, keys listed as tables (the first 5,000 of a database), a key opens as its members (strings, hashes,
+  lists, sets, sorted sets, streams) with paging and counts, Structure shows the type, expiry, encoding and memory. The
+  query tab runs commands, one per line, with quoting as in `redis-cli`; replies of `HGETALL`, `ZRANGE ... WITHSCORES`,
+  `SCAN`, `INFO` and `KEYS` come back as tables. Cancel closes the socket and the next command opens it again.
+- **MongoDB**: databases and collections in the sidebar, a collection opens as its documents with a column for every
+  field found (dates, decimals, ObjectIds, nested documents as JSON). The query tab runs shell-style calls
+  (`db.items.find({...}).sort({...}).limit(10)`, `aggregate`, `insertOne` / `insertMany`, `updateOne` / `updateMany`,
+  `deleteOne` / `deleteMany`, `countDocuments`, `distinct`, `createIndex`, `getIndexes`, `runCommand`, `show dbs`,
+  `show collections`, `use`) and JSON commands. Shell values are understood (`ObjectId("...")`, `ISODate("...")`,
+  `NumberLong`, `NumberDecimal`, `UUID`, regular expressions, unquoted keys). Sign-in is SCRAM-SHA-256 or SCRAM-SHA-1.
+  Checked against MongoDB 7.0, with and without authentication.
+- **Connection URLs** for the new engines: `redis://`, `rediss://` (TLS), `mongodb://`, `clickhouse://`, `duckdb://`
+  and `mssql://` work in *New connection from a URL*. `mongodb+srv://` is refused with a message because it needs DNS
+  lookups.
+- A hint under the SSL mode of SQL Server, Redis and MongoDB says what each mode does; the user placeholder follows the
+  engine (`sa`, `default`, the Redis ACL user).
+
+### Changed
+- The table browser asks the dialect for the count statement, so engines that are not SQL can answer in their own way.
+- The grid's *Filter* and *Search in every column* are hidden for Redis and MongoDB, where there is no SQL to build.
+
+### Known limits
+- Redis and MongoDB are browsed read-only; changes are made with commands in the query tab.
+- DuckDB's Swift package cannot interrupt a running statement: Cancel frees the window and the statement finishes behind it.
+- SQL Server shows only the first result set of a batch, and has no Windows or Azure AD sign-in.
+- Redis and MongoDB use TLS only with the SSL mode Required or stricter; MongoDB `mongodb+srv://` is not resolved.
+
 ## [1.11.0] - 2026-10-13
 
 Batch 5 of the feature checklist: more engines and ways to connect (see *Roadmap and progress* in the README).

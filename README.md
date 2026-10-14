@@ -16,9 +16,9 @@
 TableGrip lets you browse, query and edit a database in one small window, and shows every change as SQL before it is
 written. It is the macOS port of the Windows application of the same name, with the same features.
 
-Supports **SQLite**, **MySQL**, **MariaDB** and **PostgreSQL**
+Supports **SQLite**, **MySQL**, **MariaDB**, **PostgreSQL**, **SQL Server**, **ClickHouse**, **DuckDB**, **Redis** and **MongoDB**
 
-> **Status:** version 1.11.0. The app is not code-signed or notarised yet, so Gatekeeper asks for confirmation the first
+> **Status:** version 1.12.0. The app is not code-signed or notarised yet, so Gatekeeper asks for confirmation the first
 > time it is opened. MariaDB has not been exercised against a live server yet, and SQL Server is shown in the engine
 > picker but has no driver yet.
 

@@ -75,6 +75,21 @@ guarantee use a database account without write privileges.
 
 ## Editing
 
+**Query results, keys and conflicts.** A plain `SELECT` from one table (columns or `*`, with WHERE, ORDER BY, LIMIT) gives an
+editable result: ⌘S commits, ⇧⌘R shows the SQL. A table with no primary key is edited by a unique key, or by all its values; a
+change that would touch more than one row is refused. When you commit, a value you replace must still be what you read, or
+the commit is refused (Preferences > Editing turns that off).
+
+**Pickers.** ⌥↓ or F4 opens a list for an enum or a CHECK that lists values, TRUE / FALSE / NULL for a true / false column
+(Space flips it), the rows of the referenced table for a foreign key, and a calendar for dates and times.
+
+**Details panel.** Its fields are live: leaving a box stages the value, Esc restores it. ⌥⌘V pastes a block copied from a
+spreadsheet; ⇧-click a header adds a sort column; double-click a binary cell to look at it.
+
+**Edit structure.** On the Structure side, *Edit structure* turns the columns, indexes, foreign keys and checks into grids.
+*Review SQL* (⌘S) shows exactly what will run; *Discard changes* puts everything back.
+
+
 Nothing is written until you **Commit**. Edits are staged in the tab:
 
 - Double-click a cell (or press Enter) to edit it; Esc cancels. Tab moves on.

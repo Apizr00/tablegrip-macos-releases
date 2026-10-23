@@ -1,5 +1,54 @@
 # Changelog
 
+## [1.14.0] - 2026-10-23
+
+Batch 8 of the Windows parity plan (see `planning.md`): editing. The wording follows the Windows 1.6 to 1.12 notes.
+
+### Added
+- **Edit the result of a query.** When a query is a plain `SELECT` from one table (columns or `*`, with at most WHERE, ORDER BY and
+  LIMIT), its result can be edited like the table: an edit bar appears, ⌘S commits, ⇧⌘R shows the SQL, and the query runs again to
+  show what is stored. Joins, grouping, DISTINCT, UNION, computed or renamed columns and CTEs stay read-only. Running the query
+  again while edits are staged asks first.
+- **Tables without a primary key can be edited.** Rows are found by a unique key of NOT NULL columns, or else by all their values (a
+  column of floating-point, JSON or binary type is not compared); a change that would touch more than one row is refused and nothing
+  is saved. A "No primary key" note beside the status bar says which is in use. Views and read-only connections stay read-only.
+- **No overwriting someone else's change.** When you commit, the values you are replacing must still be what you read (text,
+  integers, decimals, booleans, GUIDs), or the commit is refused and nothing is written. Preferences > Editing turns it off.
+- **Pickers in cells.** A column with a fixed set of values (MySQL or MariaDB enums, PostgreSQL enum types, or a CHECK that lists
+  them) opens a list; a true / false column opens TRUE / FALSE / NULL (Space flips it); a foreign key opens the rows of the
+  referenced table (searchable); date, time and timestamp columns open a calendar. ⌥↓ or F4 opens the picker of any cell, and so
+  does Return or a double-click on a list or true / false column.
+- **CHECK constraints are read** from SQLite (out of the table definition), PostgreSQL, MySQL and MariaDB, and SQL Server; unique
+  keys are read for the light structure too, so a table without a primary key is found by its unique key. Partial SQLite indexes
+  are no longer treated as keys.
+- **More Copy as formats:** Markdown table, SQL UPDATE (by key) and a WHERE … IN list of the column's values.
+- **Edit in the Details panel.** The fields are live when the table or the editable result is: leaving a box stages the value, NULL
+  and Format JSON buttons, Esc restores the stored value, and the arrows in the header move to the previous / next row.
+- **Edit structure** on the Structure side of a table: the columns, indexes, foreign keys and checks become grids you can change
+  (add, rename, retype, remove). Nothing runs while you edit: **Review SQL** (or ⌘S) shows the exact statements, **Discard changes**
+  puts everything back, and a tab with unapplied edits asks before it is closed. After the SQL ran, the table is read again. What
+  an engine cannot do in place (SQLite foreign keys and checks, for example) is written as a comment, not as SQL that fails.
+- **Binary viewer.** Double-click a binary cell (or right-click > View binary value…, ⌥⌘E): the file type it seems to be, a picture
+  for PNG, JPEG, GIF, BMP and WebP, the text when it is plain text, and a hex dump. *Save to file…* writes the bytes out; *Copy
+  as 0x…* copies them as SQL hex.
+- **Paste as rows and columns** (⌥⌘V, or right-click): pastes a block copied from a spreadsheet or another grid; the first cell goes
+  into the active cell, the rest to the right and below, and rows past the end become new rows. Everything is staged.
+- **Several sort columns.** ⇧-click a column header to add it to the sort, again to reverse it, a third time to remove it; the
+  headers show the order. A plain click still sorts by that column alone.
+
+### Changed
+- A commit that matched no row says that someone else changed or deleted it, instead of "Expected 1 row(s) to change but 0 did".
+- A statement that looks for a NULL in a key no longer sends an unused parameter (PostgreSQL refused such a statement).
+
+### Fixed
+- A MySQL CHECK is read although the server writes its quotes with a backslash.
+
+### Notes
+- Details panel: Windows moves between rows with ⌥↑ / ⌥↓; on the Mac those keys belong to text editing, so the header has arrows.
+- Edit structure runs its statements one after another; if one fails, the earlier ones have already run (the message says so),
+  as in the table designer.
+- Behind this batch: the grid's edit actions go through one small interface that a table tab and an editable result share.
+
 ## [1.13.0] - 2026-10-23
 
 Batch 7 of the Windows parity plan (see `planning.md`): the everyday workflow. The wording follows the Windows 1.9.x to

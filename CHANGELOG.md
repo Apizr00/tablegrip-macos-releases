@@ -1,5 +1,54 @@
 # Changelog
 
+## [1.13.0] - 2026-10-23
+
+Batch 7 of the Windows parity plan (see `planning.md`): the everyday workflow. The wording follows the Windows 1.9.x to
+1.12.x notes.
+
+### Added
+- **The tabs come back.** When a connection is opened again, its tabs are as you left them: each table with its sort,
+  filter, page and Data / Structure side, each query with its text and cursor. They are written down every few seconds
+  and when the app quits. Preferences > Tabs > "Reopen the tabs of the last session" turns it off. A connection is
+  recognised by its server, database and user (or its file), so a database opened with *Switch database* finds its own
+  tabs again.
+- **SQL files.** File > Open SQL File… (⇧⌘O) opens a `.sql` file in a query tab and remembers the file: ⌘S saves it
+  (asking for a name the first time), ⇧⌘S saves under another name, and File > Open Recent SQL File lists the last ten.
+  A tab whose text differs from its file shows a dot after its name, and closing it asks first. Opening a file that is
+  already open goes to its tab. In a table tab ⌘S still commits.
+- **One result tab per statement.** Running several statements (Run every statement, or a selection that holds
+  several) shows a tab for each one that returns rows (Result 1, Result 2, …) and a **Messages** tab with every
+  statement's row count and time, or the error that stopped the script. Each run replaces the tabs of the one before.
+- **Review the SQL of staged edits** (⇧⌘R, or the eye button): shows exactly what ⌘S will run, without running it. A
+  cell that is still being typed in is staged first, so ⌘S and ⇧⌘R see it.
+- **Switch database** (Database menu, ⇧⌘D, or the palette) lists the databases of the server that the login can open
+  (MySQL, MariaDB, PostgreSQL, SQL Server, ClickHouse) and opens the one you choose with the same login, tunnel and
+  settings, without saving another connection. The old connection closes once the new one is open; if it has unsaved
+  edits and you keep them, both stay open.
+- **Recent tables first in the command palette** (⌘K, ⌘P): with the search box empty, the tables and views you opened
+  last come first, per connection.
+- **The sidebar filter remembers its text.** The Items filter comes back with the tabs next time the connection opens,
+  and the Items, Queries and History lists each keep their own filter while you switch between them (Queries used to
+  share History's).
+- **Saved queries in folders.** Right-click a saved query > **Move to folder…**: the Queries list then groups them under
+  the folder names (queries without a folder come first). **Make a snippet with a keyword…** turns a saved query into
+  a snippet: type the keyword in any query and press Tab to insert it. The keyword is checked (one word of letters,
+  digits and underscores, up to 24 characters) here and in *Save selection as snippet*.
+- **Diagnose** button in the connection editor: a step-by-step check of the path to the database (settings, the
+  database file, the SSH server's name and port, the SSH sign-in and tunnel, the server's name and port, the database
+  login, a first query), each with its time, and for a failure what it most likely means and what to try.
+
+### Changed
+- ⌘S is "Save": it saves the SQL file in a query tab and commits the staged edits in a table tab.
+- The editor bar's *Save query* is now the **Favorite** button (Query > Favorite Query…), which keeps the query under
+  Queries. ⇧⌘S is Save As for the SQL file; ⌥⌘S no longer does anything.
+- A saved-queries file from before folders still reads; the session file tolerates keys it does not know.
+
+### Notes
+- With the editor split, the first pane is the file: it is what ⌘S writes and what the dot compares.
+- Tabs are not restored for a table that no longer exists; the rest come back.
+- Behind this batch: engine capability flags, `TransferProgress`, gzip (zlib), the sort cycle and the shortcut catalogue
+  (groundwork for the next batches, not yet visible).
+
 ## [1.12.0] - 2026-10-14
 
 Batch 6 of the feature checklist: engines with a driver of their own (see *Roadmap and progress* in the README).

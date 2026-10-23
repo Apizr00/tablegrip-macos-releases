@@ -4,7 +4,7 @@
 
 1. **New Connection** (⌘N) asks for the database type, then the details. File engines (SQLite) open a file; server
    engines ask for host, port, user, password and **database name**. One connection opens exactly one database.
-2. **Test** checks the settings without saving. **Save** keeps the connection in the list; **Connect** saves and opens it.
+2. **Test** checks the settings without saving. **Diagnose** walks the path to the database step by step (the name, the port, the SSH sign-in, the login, a first query) with the time of each, and says what a failure most likely means. **Save** keeps the connection in the list; **Connect** saves and opens it.
 3. SQLite files can also be opened with **Open Database File** (⌘O) or by dropping them on the window.
 
 ### The engines
@@ -105,9 +105,20 @@ left alone. History keeps the query with its `:name` placeholders, so running it
 is a place to type with a default, and `$0` is where the caret finishes. Eight starters ship with the app (`sel`, `selc`,
 `ins`, `upd`, `del`, `join`, `grp`, `dup`); **Snippets…** in the Tools menu adds your own.
 
-**History and saved queries.** Every run is added to **History** in the sidebar; type in the search box to find one.
-Right-click > **Pin to top** keeps a query at the top, and pinned queries survive *Clear history*. **Save Query** keeps
-one under **Queries**.
+**Several statements.** Run every statement (⇧⌘↩), or select several and run the selection: each statement that returns
+rows gets a tab (Result 1, Result 2, …) and the **Messages** tab lists what every statement did, or the error that
+stopped the script. The tabs are replaced by the next run.
+
+**SQL files.** **Open SQL File…** (⇧⌘O) reads a `.sql` file into a query tab and remembers it: ⌘S saves the file
+(asking for a name the first time), ⇧⌘S saves it under another name, and **Open Recent SQL File** lists the last ten. A
+dot after the tab's name means the text differs from the file, and closing the tab asks first. In a table tab ⌘S
+commits instead.
+
+**History, favorites and snippets.** Every run is added to **History** in the sidebar; type in the search box to find
+one. Right-click > **Pin to top** keeps a query at the top, and pinned queries survive *Clear history*. **Favorite**
+keeps the query under **Queries**; right-click a saved query > **Move to folder…** groups the list, and **Make a
+snippet with a keyword…** lets you type the keyword and press Tab to insert it. The three lists each keep their own
+search text.
 
 ## Plans, diagrams and comparing data
 
@@ -154,6 +165,19 @@ Both are in **Tools** and in the command palette (⌘K).
 - **Import CSV** (⇧⌘I): the delimiter is detected, columns are matched by name and can be remapped, and the file is
   validated *before* anything is written. An error leaves the table untouched.
 
+## Tabs come back
+
+When you open a connection again, its tabs are as you left them: each table with its sort, filter, page and Data or
+Structure side, each query with its text and cursor, and the sidebar filter. They are written down every few seconds and
+when you quit. Preferences > Tabs turns this off. Passwords are never part of it.
+
+## Switch database
+
+**Database > Switch Database…** (⇧⌘D) lists the databases of the server that your login can open and opens the one you
+choose, with the same login and tunnel and without saving another connection. The old connection closes once the new
+one is open; if it has staged edits and you keep them, both stay open. A SQLite or DuckDB file is one database, so open
+another file instead.
+
 ## Several connections at once
 
 The **new connection button** in the top bar opens the *Open connection* list; pick one and it opens **in the same
@@ -175,7 +199,10 @@ selection and unsaved changes. Closing the last one returns to the start screen.
 | ⌘F | Filter the sidebar |
 | ⌘, | Preferences |
 | ⌘Z / ⇧⌘Z | Undo / redo staged edits |
-| ⌘S / ⇧⌘⌫ | Commit / discard staged edits |
+| ⌘S / ⇧⌘⌫ | Commit staged edits (save the file in a query tab) / discard staged edits |
+| ⇧⌘R | Review the SQL of the staged edits |
+| ⇧⌘O / ⇧⌘S | Open a SQL file / save the SQL file as |
+| ⇧⌘D | Switch database |
 | ⌥⌘1, ⌥⌘2, ⌥⌘3 | Sidebar, details panel, console |
 | ⌘K / ⌘P | Command palette: commands, tables and saved queries (type `>` for commands only) |
 | ⇧⌘[ / ⇧⌘] | Previous / next tab |
